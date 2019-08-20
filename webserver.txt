@@ -1,0 +1,11 @@
+#!/bin/bash -ex
+sudo yum -y update
+sudo yum -y install httpd php mysql  php-mysql
+sudo chkconfig httpd on
+sudo /etc/init.d/httpd start 
+if [ ! -f /var/www/html/lab2-app.tar.gz ]; then
+cd /var/www/html
+wget https://us-west-2-aws-training.s3.amazonaws.com/awsu-ilt/AWS-100-ESS/v4.1/lab-2-configure-website-datastore/scripts/lab2-app.tar.gz
+sudo tar xvfz lab2-app.tar.gz
+sudo chown apache:root  /var/www/html/rds.conf.php
+fi
